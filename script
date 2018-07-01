@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Crypto Kitty Info Extension
 // @namespace    https://github.com/HaJaeKyung/KittyExtension
-// @version      0.40
+// @version      0.41
 // @description  Adds stat info to the site
 // @author       HaJaeKyung
 // @match        *.cryptokitties.co/*
@@ -266,6 +266,9 @@ $(document).ready(() => {
             let mainSite = window.location.hostname == 'www.cryptokitties.co';
             let toolsSite = window.location.hostname == 'kittytools.herokuapp.com';
             let element = mainSite ? nativeElement.getElementsByClassName('KittyCard')[0] : toolsSite ? nativeElement.parentElement : nativeElement;
+            if (!element) {
+                element = mainSite ? nativeElement.getElementsByClassName('KittyCardV2-main')[0] : toolsSite ? nativeElement.parentElement : nativeElement;
+            }
             if (element) {
                 let stats = {"id": curId, "fast":false, "gen": false, "cd": false};
                 if (mainSite) {
